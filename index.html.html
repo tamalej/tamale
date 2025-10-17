@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blessing Junior School & Community Support</title>
+    <style>
+        :root {
+            --primary-orange: #FF9800;
+            --primary-purple: #673AB7;
+            --light-yellow: #FFF9C4;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-orange));
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--primary-purple);
+            font-size: 14px;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        .school-name {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .school-motto {
+            font-size: 16px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 14px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background-color: var(--light-yellow);
+            color: var(--primary-purple);
+        }
+        
+        .nav-menu a.active {
+            background-color: var(--primary-purple);
+            color: var(--white);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+            min-height: 70vh;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-purple);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-orange);
+        }
+        
+        /* Home Page */
+        .hero {
+            background: linear-gradient(rgba(103, 58, 183, 0.8), rgba(255, 152, 0, 0.8)), url('https://source.unsplash.com/random/1200x600/?school') no-repeat center center/cover;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content h3 {
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+        }
+        
+        .img-caption {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        /* About Us Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .director-info {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .director-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 5px solid var(--primary-orange);
+        }
+        
+        .director-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .map-placeholder {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .map-placeholder h3 {
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+        }
+        
+        .map-img {
+            height: 300px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: #999;
+        }
+        
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: var(--primary-orange);
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .contact-form {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-purple);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-orange);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                margin-bottom: 30px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .school-name {
+                font-size: 20px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .hero {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                  
+                   
+                       <img src="images/logo 2.jpg"alt="logo" width="100px" height="100">
+
+                        
+                    <div>
+                        <h1 class="school-name" style="font-size: 50px; color: chartreuse;font-family: Cambria;">BLESSING JUNIOR SCHOOL</h1>
+                        <p class="school-motto; font-size" style="font-size: 20px;">"Train up a child"</p>
+                    </div>
+                </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                    <li><a href="#" class="nav-link" data-page="health">Health</a></li>
+                    <li><a href="#" class="nav-link" data-page="sports">Games & Sports</a></li>
+                    <li><a href="#" class="nav-link" data-page="classwork">Class Work</a></li>
+                    <li><a href="#" class="nav-link" data-page="mdd">MDD</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact Us</a></li>
+                    <li><a href="#" class="nav-link" data-page="donations">Donations</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Page -->
+            <section id="home" class="page active">
+                <div class="hero">
+                    <h1>Welcome to Blessing Junior School</h1>
+                    <p>Providing quality education and community support in Busula-Luweero District since our establishment. We are committed to nurturing young minds and building a better future.</p>
+                    <a href="#" class="btn" data-page="about">Learn More About Us</a>
+                </div>
+                
+                <h2 class="page-title">Our Programs</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://source.unsplash.com/random/600x400/?education" alt="Academic Excellence">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Academic Excellence</h3>
+                            <p>We provide a comprehensive curriculum that challenges Learners to achieve their full potential in all academic areas.</p>
+                            <p class="img-caption">Our Learners engaged in classroom learning activities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://source.unsplash.com/random/600x400/?sports" alt="Sports & Games">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Sports & Games</h3>
+                            <p>We believe in holistic development, offering various sports and games to promote physical fitness and teamwork.</p>
+                            <p class="img-caption">Learners participating in outdoor sports activities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://source.unsplash.com/random/600x400/?health" alt="Health & Wellness">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Health & Wellness</h3>
+                            <p>Our health programs ensure students' physical and mental well-being through regular check-ups and health education.</p>
+                            <p class="img-caption">Health education session for our students</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Us Page -->
+            <section id="about" class="page">
+                <h2 class="page-title">About Blessing Junior School</h2>
+                
+                <div class="about-content">
+                    <div>
+                        <h3>Our Story</h3>
+                        <p>Blessing Junior School was established with a vision of being a centre of love, care, academic excellence and buil a God fearing generation</p>
+                        <p>Our mission is to "train up a child" in the way they should go, providing not only academic knowledge but also moral guidance and life skills that will serve them throughout their lives.</p>
+                        
+                        <h3 style="margin-top: 30px;">Our Values</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Integrity and Honesty</li>
+                            <li>Passion and Quality</li>
+                            <li>Learning and Team work</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="director-info">
+                        <h3>School Director</h3>
+                        <div class="director-img">
+                            <img src="images/director.jpg" alt="School Director">
+                        </div>
+                        <h4>Mr. Tugume Eric</h4>
+                        <p class="img-caption">Director of Blessing Junior School</p>
+                        <p>    </p>
+                    </div>
+                </div>
+                
+                <div class="map-placeholder">
+                    <h3>School Location & Structure</h3>
+                    <div class="map-img">
+                        <img src="images/Screenshot 2025-10-06 153106.png"alt="map-img" width="5100" height="400">
+                    </div>
+                    <p class="img-caption">Map showing the location and layout of Blessing Junior School</p>
+                </div>
+            </section>
+
+            <!-- Health Page -->
+            <section id="health" class="page">
+                <h2 class="page-title">Health & Wellness</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/screening.jpg"alt="Health Check-ups">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Regular Health Check-ups</h3>
+                            <p>We conduct regular health screenings and check-ups to monitor our Learners' physical development and address any health concerns promptly.</p>
+                            <p class="img-caption">Learners receiving health check-ups at school</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/lunch.jpg" alt="Nutrition Program">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Nutrition Program</h3>
+                            <p>Our school provides balanced meals to ensure Learners receive proper nutrition for optimal growth and learning.</p>
+                            <p class="img-caption">Healthy meals served to our learners</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/hygine pic.jpg" alt="Hygiene Education">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Hygiene Education</h3>
+                            <p>We teach Learners about personal hygiene practices to prevent illnesses and promote overall well-being.</p>
+                            <p class="img-caption">Hygiene education session in progress</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Games & Sports Page -->
+            <section id="sports" class="page">
+                <h2 class="page-title">Games & Sports</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/sports.jpg"alt="Football Team">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Football</h3>
+                            <p>Our football team participates in local tournaments and helps Learners develop teamwork and sportsmanship.</p>
+                            <p class="img-caption">Our school football team during practice</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/atheletics.jpg" alt="Athletics">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Athletics</h3>
+                            <p>We encourage participation in various athletic activities to promote physical fitness and healthy competition.</p>
+                            <p class="img-caption">Learners participating in track events</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/indoor.jpg" alt="Indoor Games">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Indoor Games</h3>
+                            <p>We provide various indoor games that help develop strategic thinking and cognitive skills.</p>
+                            <p class="img-caption">Learners engaged in indoor games</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Class Work Page -->
+            <section id="classwork" class="page">
+                <h2 class="page-title">Class Work & Academics</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://source.unsplash.com/random/600x400/?classroom" alt="Classroom Learning">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Interactive Learning</h3>
+                            <p>Our classrooms are designed to facilitate interactive learning where Learners actively participate in lessons.</p>
+                            <p class="img-caption">Learners engaged in classroom activities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://source.unsplash.com/random/600x400/?science" alt="Science Education">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Science Education</h3>
+                            <p>We provide hands-on science education to help Learners understand scientific concepts through experimentation.</p>
+                            <p class="img-caption">Science practical lesson in progress</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://source.unsplash.com/random/600x400/?library" alt="Library Resources">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Library Resources</h3>
+                            <p>Our school library provides a variety of books and resources to support Learners' learning and reading habits.</p>
+                            <p class="img-caption">Learners using the school library</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MDD Page -->
+            <section id="mdd" class="page">
+                <h2 class="page-title">Music, Dance and Drama (MDD)</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/music.jpeg" alt="Music Program">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Music Program</h3>
+                            <p>Our music program helps Learners discover and develop their musical talents through various instruments and vocal training.</p>
+                            <p class="img-caption">Learners during music practice session</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/mdd.jpg"alt="Dance Activities">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Dance Activities</h3>
+                            <p>We celebrate our cultural heritage through traditional and contemporary dance performances.</p>
+                            <p class="img-caption">Cultural dance performance by Learners</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/drama performing.jpeg" alt="Drama Club">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Drama Club</h3>
+                            <p>Our drama club provides a platform for students to express themselves creatively and build confidence.</p>
+                            <p class="img-caption">Drama club performance</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Us Page -->
+            <section id="contact" class="page">
+                <h2 class="page-title">Contact Us</h2>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i>📍</i>
+                                <div>
+                                    <strong>Address:</strong><br>
+                                    Blessing Junior School<br>
+                                    Busula-Luweero District<br>
+                                    Uganda
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i>📞</i>
+                                <div>
+                                    <strong>Phone:</strong><br>
+                                    +256 702578761 <br>
+                                    +256 783106756
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i>✉️</i>
+                                <div>
+                                    <strong>Email:</strong><br>
+                                    blessingjuniorschoolkaswa@gmail.com
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Visit Our School</h3>
+                        <p>We welcome visitors and prospective parents to tour our school facilities and learn more about our programs. Please contact us to schedule a visit.</p>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" class="form-control" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Donations Page -->
+            <section id="donations" class="page">
+                <h2 class="page-title">Donations & Sponsorship</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/sauda.jpg" alt="Support Our School">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Support Our School</h3>
+                            <p>Your donations help us provide quality education, improve facilities, and support Learners from disadvantaged backgrounds.</p>
+                            <p class="img-caption">Improved classroom facilities made possible by donations</p>
+                            <a href="#" class="btn" style="margin-top: 15px;">Donate Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/sponsor.jpg" alt="Student Sponsorship">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Learner Sponsorship</h3>
+                            <p>Sponsor a child's education and transform their future. Your sponsorship covers school fees, uniforms, and learning materials.</p>
+                            <p class="img-caption">Sponsored Learners showing their appreciation</p>
+                            <a href="#" class="btn" style="margin-top: 15px;">Sponsor a Child</a>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="images/infrastructure.jpg"alt="Infrastructure Development">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Infrastructure Development</h3>
+                            <p>Help us build and improve school facilities including classrooms, libraries, and sports facilities.</p>
+                            <p class="img-caption">New classroom block under construction</p>
+                            <a href="#" class="btn" style="margin-top: 15px;">Support Infrastructure</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background-color: var(--white); padding: 30px; border-radius: 10px; margin-top: 40px; text-align: center;">
+                    <h3>Other Ways to Support</h3>
+                    <p>You can also support our school by donating educational materials, volunteering your time, or sharing our story with others who might be interested in supporting our mission.</p>
+                    <p>For more information about donations and sponsorship opportunities, please contact us at <strong>blessingjuniorschoolkaswa@gmail.com</strong> or call <strong>+256 702578761/ +256 783106756</strong>.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Blessing Junior School</h3>
+                    <p>Providing quality education and community support in Busula-Luweero District. "Train up a child" in the way they should go.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="about">About Us</a></li>
+                        <li><a href="#" data-page="contact">Contact Us</a></li>
+                        <li><a href="#" data-page="donations">Donations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>📍 Busula-Luweero District, Uganda</p>
+                    <p>📞+256 702578761/ +256 783106756</p>
+                    <p>✉️ blessingjuniorschoolkaswa@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Blessing Junior School & Community Support. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and pages
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding page
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(pageId).classList.add('active');
+                });
+            });
+            
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
+            if(contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Footer links navigation
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and pages
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to corresponding nav link
+                    const pageId = this.getAttribute('data-page');
+                    document.querySelector(`.nav-link[data-page="${pageId}"]`).classList.add('active');
+                    
+                    // Show corresponding page
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
